@@ -1,5 +1,17 @@
 import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.4.1";
 
+const imgTrigger = document.getElementById("img-trigger");
+const textTrigger = document.getElementById("text-trigger");
+imgTrigger.addEventListener("click", () => {
+  document.querySelector(".input_image").classList.add("active");
+  document.querySelector(".trigger-btns").style.display = "none";
+});
+
+textTrigger.addEventListener("click", () => {
+  document.querySelector(".input_text").classList.add("active");
+  document.querySelector(".trigger-btns").style.display = "none";
+});
+
 let text = document.getElementById("texto").value;
 document.getElementById("btn").addEventListener("click", async () => {
   console.log(text.value);

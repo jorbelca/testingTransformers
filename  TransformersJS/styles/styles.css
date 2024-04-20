@@ -1,0 +1,21 @@
+.input_image,
+.input_text {
+  display: none;
+}
+
+.trigger-btns,
+.active {
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+  justify-content: center;
+  gap: 20px;
+}
+
+i button {
+  border-radius: 5px;
+}
+button:hover {
+  border: 2px solid grey;
+  border-radius: 5px;
+}

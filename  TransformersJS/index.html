@@ -3,11 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Transformers</title>
   </head>
   <body>
-    <div class="input-image">
+    <div class="trigger-btns">
+      <button id="img-trigger">
+        <i class="fa-regular fa-image fa-3x"></i>
+      </button>
+      <button id="text-trigger">
+        <i class="fa-regular fa-keyboard fa-3x"></i>
+      </button>
+    </div>
+    <img src="" alt="" />
+    <div class="input_image">
       <input
         type="file"
         id="img"
@@ -16,7 +32,7 @@
       "
       />
     </div>
-    <div class="input-text">
+    <div class="input_text">
       <input type="text" id="texto" />
       <button id="btn">Send</button>
       <span id="result"></span>
