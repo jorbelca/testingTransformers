@@ -11,18 +11,25 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Transformers</title>
+    <title>Image</title>
   </head>
   <body>
-    <div class="trigger-btns">
-      <button id="img-trigger">
-        <a href="./image.html"> <i class="fa-regular fa-image fa-3x"></i></a>
-      </button>
-      <button id="text-trigger">
-        <a href="./text.html"><i class="fa-regular fa-keyboard fa-3x"></i></a>
+    <div class="return-home">
+      <button id="home-trigger">
+        <a href="./index.html"> <i class="fa-solid fa-house fa-1x"></i></a>
       </button>
     </div>
+    <div class="input_image">
+      <input
+        type="file"
+        id="img"
+        accept="image/*"
+        alt="input de imagen
+      "
+      />
+    </div>
+    <div id="result-img"></div>
 
-    <script type="module" src="scripts/index.js"></script>
+    <script type="module" src="scripts/image.js"></script>
   </body>
 </html>

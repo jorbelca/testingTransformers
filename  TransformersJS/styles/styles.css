@@ -1,10 +1,6 @@
-.input_image,
-.input_text {
-  display: none;
-}
-
 .trigger-btns,
-.active {
+.input_text,
+.input_image {
   display: flex;
   align-items: center;
   padding-top: 30px;
@@ -18,4 +14,8 @@ i button {
 button:hover {
   border: 2px solid grey;
   border-radius: 5px;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
