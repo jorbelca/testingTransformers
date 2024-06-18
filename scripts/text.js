@@ -1,9 +1,10 @@
 import { pipeline } from "./index.js";
 
 let text = document.getElementById("texto");
+const spinner = document.querySelector(".fa-spinner");
 
 document.getElementById("btn").addEventListener("click", async () => {
-  //console.log(text.value.length);
+  spinner.style.visibility = "visible";
   if (!text || text.value.length < 1) {
     document.getElementById("result").innerText = "No text";
   } else {
@@ -14,4 +15,5 @@ document.getElementById("btn").addEventListener("click", async () => {
       result[0].label
     } with ${Math.ceil(result[0].score * 100)} % accuracy`;
   }
+  spinner.style.visibility = "hidden";
 });
