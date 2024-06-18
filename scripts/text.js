@@ -1,12 +1,5 @@
 import { pipeline } from "./index.js";
 
-// const textTrigger = document.getElementById("text-trigger");
-
-// textTrigger.addEventListener("click", () => {
-//   document.querySelector(".input_text").classList.add("active");
-//   document.querySelector(".trigger-btns").style.display = "none";
-// });
-
 let text = document.getElementById("texto");
 
 document.getElementById("btn").addEventListener("click", async () => {

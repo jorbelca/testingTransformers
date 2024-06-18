@@ -1,14 +1,9 @@
 import { pipeline } from "./index.js";
 
-// const imgTrigger = document.getElementById("img-trigger");
-
-// imgTrigger.addEventListener("click", () => {
-//   document.querySelector(".return-home").style.display = "block";
-//   document.querySelector(".trigger-btns").style.display = "none";
-// });
 const tableResults = document.getElementById("tableResults");
 const tableBody = tableResults.getElementsByTagName("tbody")[0];
 let image = document.getElementById("img");
+
 image.addEventListener("change", async () => {
   if (image.files.length > 0) {
     //readURL(image.files[0]).then((res) => console.log(res));
@@ -17,10 +12,9 @@ image.addEventListener("change", async () => {
       "Xenova/vit-base-patch16-224"
     );
     let result = await classifier(await readURL(image.files[0]), { topk: 0 });
-
+    tableBody.innerHTML = "";
     result.forEach((element) => {
       if (element.score > 0.1) {
-        console.log(`${element.label} => ${element.score}`);
         tableBody.innerHTML += `
         <tr>
         <td>${Math.ceil(element.score * 100)}</td>
