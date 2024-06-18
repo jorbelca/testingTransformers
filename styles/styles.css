@@ -1,3 +1,6 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .trigger-btns,
 .input_text,
 .input_image {
@@ -18,4 +21,21 @@ button:hover {
 a {
   text-decoration: none;
   color: black;
+}
+
+#results {
+  padding-top: 3vh;
+  display: flex;
+  justify-content: center;
+}
+
+#tableResults {
+  border-radius: 5px;
+  visibility: hidden;
+  padding: 1px;
+}
+#tableResults thead {
+  border: none;
+  background-color: grey;
+  color: white;
 }

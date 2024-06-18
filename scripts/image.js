@@ -6,7 +6,8 @@ import { pipeline } from "./index.js";
 //   document.querySelector(".return-home").style.display = "block";
 //   document.querySelector(".trigger-btns").style.display = "none";
 // });
-
+const tableResults = document.getElementById("tableResults");
+const tableBody = tableResults.getElementsByTagName("tbody")[0];
 let image = document.getElementById("img");
 image.addEventListener("change", async () => {
   if (image.files.length > 0) {
@@ -16,18 +17,20 @@ image.addEventListener("change", async () => {
       "Xenova/vit-base-patch16-224"
     );
     let result = await classifier(await readURL(image.files[0]), { topk: 0 });
-    let renderResult = document.getElementById("result-img");
-    let mappedResults = "";
+
     result.forEach((element) => {
       if (element.score > 0.1) {
         console.log(`${element.label} => ${element.score}`);
-        mappedResults += `<p>${element.label} => ${Math.ceil(
-          element.score * 100
-        )} %</p>`;
+        tableBody.innerHTML += `
+        <tr>
+        <td>${Math.ceil(element.score * 100)}</td>
+        <td>${element.label}
+        </td>
+      </tr>`;
       }
     });
-    renderResult.innerHTML = mappedResults;
   }
+  tableResults.style.visibility = "visible";
 });
 
 // convert file to a base64 url
