@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/styles.css" />
-   
-    <title>Image</title>
+
+    <title>Text</title>
   </head>
   <body>
     <div class="return-home">
@@ -13,29 +13,16 @@
         <a href="../index.html"> <i class="fa-solid fa-house fa-1x"></i></a>
       </button>
     </div>
-    <div class="input_image">
-      <input
-        type="file"
-        id="img"
-        width="100"
-        height="30"
-        accept="image/*"
-        alt="input de imagen
-      "
-      />
+
+    <div class="input_text">
+      <input type="text" id="texto" placeholder="youtube url" />
+      <button id="btn">Analize</button>
     </div>
 
     <div id="results">
       <i class="fa-solid fa-spinner fa-2x"></i>
-      <table id="tableResults" border="1px solid black">
-        <thead>
-          <th>%</th>
-          <th>Caracteristic</th>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <p id="result"></p>
     </div>
-
-    <script type="module" src="../scripts/image.js"></script>
+    <script type="module" src="../scripts/youtubeComments.js"></script>
   </body>
 </html>
