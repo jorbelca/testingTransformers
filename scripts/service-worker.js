@@ -3,6 +3,7 @@ import { cdnURL } from "./index.js";
 const CACHE_NAME = "transformers-cached-v1";
 
 self.addEventListener("install", function (event) {
+  console.log("entra");
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       console.log("Abriendo caché");
@@ -21,3 +22,5 @@ self.addEventListener("fetch", function (event) {
     })
   );
 });
+
+
