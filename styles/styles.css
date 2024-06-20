@@ -53,3 +53,19 @@ a {
     transform: rotate(360deg);
   }
 }
+
+#results-expandable {
+  margin: 10px;
+}
+#results-expandable p {
+  transition: max-height 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 30 0;
+  max-height: 1.5vh;
+}
+
+#results-expandable p:hover {
+  max-height: fit-content;
+}
