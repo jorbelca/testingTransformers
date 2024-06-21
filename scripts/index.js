@@ -7,11 +7,10 @@ if ("serviceWorker" in navigator) {
       console.log("Service Worker registrado con éxito");
     })
     .catch(function (error) {
-      console.log("Error al registrar el Service Worker:", error);
+      console.error("Error al registrar el Service Worker:", error);
     });
 }
 
-
-
 const module = await import(cdnURL);
 export const { pipeline } = module;
+self.cdnURL = cdnURL;

@@ -38,6 +38,7 @@ a {
   visibility: hidden;
   color: grey;
   animation: spin 1s linear infinite;
+  align-self: center;
 }
 @keyframes spin {
   0% {

@@ -1,4 +1,4 @@
-import { cdnURL } from "./index.js";
+importScripts("./index.js");
 
 const CACHE_NAME = "transformers-cached-v1";
 
@@ -22,5 +22,3 @@ self.addEventListener("fetch", function (event) {
     })
   );
 });
-
-
