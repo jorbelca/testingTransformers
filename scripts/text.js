@@ -17,3 +17,10 @@ document.getElementById("btn").addEventListener("click", async () => {
   }
   spinner.style.visibility = "hidden";
 });
+
+
+//Altura auto
+text.addEventListener("input", function () {
+  text.style.height = "auto";
+  text.style.height = text.scrollHeight + "px";
+});
