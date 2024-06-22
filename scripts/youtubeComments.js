@@ -7,10 +7,12 @@ import { pipeline } from "./index.js";
 let input = document.getElementById("urlInput");
 const spinner = document.querySelector(".fa-spinner");
 let results = document.getElementById("results-expandable");
+let btn = document.getElementById("btnTrigger");
 let points = 0;
 let comments = [];
 
-document.getElementById("btn").addEventListener("click", async () => {
+btn.addEventListener("click", async () => {
+  btn.setAttribute("disabled", true);
   results.innerText = "";
   spinner.style.display = "block";
 
@@ -56,6 +58,7 @@ document.getElementById("btn").addEventListener("click", async () => {
     results.prepend(summary);
 
     spinner.style.display = "none";
+    btn.removeAttribute("disabled");
   }
 });
 
@@ -68,7 +71,7 @@ function analysisPointerator(label, score) {
 }
 
 function setColor(label, score) {
-  console.log(score);
+
   if (label === "POSITIVE") {
     return `rgba(60,179,113,${score})`;
   } else {

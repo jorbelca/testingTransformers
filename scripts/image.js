@@ -2,24 +2,25 @@ import { pipeline } from "./index.js";
 
 const tableResults = document.getElementById("tableResults");
 const tableBody = tableResults.getElementsByTagName("tbody")[0];
-let image = document.getElementById("imgInput");
+let imageInput = document.getElementById("imgInput");
 const imgPreview = document.getElementById("image_preview");
 const spinner = document.querySelector(".fa-spinner");
 
-image.addEventListener("change", async () => {
-  spinner.style.visibility = "visible";
-  const file = image.files;
+imageInput.addEventListener("change", async () => {
+  imageInput.setAttribute("disabled", true);
+  spinner.style.display = "block";
+  const file = imageInput.files;
 
   if (file.length > 0) {
     const classifier = await pipeline(
       "image-classification",
       "Xenova/vit-base-patch16-224"
     );
-
+    tableBody.innerHTML = "";
     let result = await classifier(await readURL(file[0]), { topk: 0 });
     if (result) {
-      spinner.style.visibility = "hidden";
-      tableBody.innerHTML = "";
+      spinner.style.display = "none";
+
       result.forEach((element) => {
         if (element.score > 0.1) {
           tableBody.innerHTML += `
@@ -33,6 +34,7 @@ image.addEventListener("change", async () => {
     }
     tableResults.style.visibility = "visible";
   }
+  imageInput.removeAttribute("disabled");
 });
 
 // convert file to a base64 url && show image uploaded
@@ -41,7 +43,6 @@ const readURL = (file) => {
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      console.log(imgPreview);
       imgPreview.src = e.target.result;
       imgPreview.style.display = "block";
       res(e.target.result);
