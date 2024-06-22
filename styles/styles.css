@@ -35,7 +35,7 @@ a {
   color: white;
 }
 .fa-spinner {
-  visibility: hidden;
+  display: none;
   color: grey;
   animation: spin 1s linear infinite;
   align-self: center;
@@ -52,7 +52,6 @@ a {
 #results-expandable,
 #results {
   margin: 10px;
-  padding-top: 3vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -69,6 +68,15 @@ a {
 #results-expandable p:hover {
   max-height: fit-content;
 }
+
+#results-expandable :first-child {
+  align-self: center;
+  cursor: unset;
+  padding: 10px;
+  border-radius: 10px;
+  color: grey;
+}
+
 #urlInput,
 #texto {
   max-width: 70%;

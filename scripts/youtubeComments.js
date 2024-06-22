@@ -1,17 +1,18 @@
 import { apiKey } from "../key.js";
-import { getComments } from "./getYoutubeComments.js";
+import { getComments } from "./getComments.js";
 import { pipeline } from "./index.js";
 
 //let idTest = "wtLJPvx7-ys";
 
 let input = document.getElementById("urlInput");
 const spinner = document.querySelector(".fa-spinner");
-let result = document.getElementById("results-expandable");
+let results = document.getElementById("results-expandable");
 let points = 0;
 let comments = [];
 
 document.getElementById("btn").addEventListener("click", async () => {
-  spinner.style.visibility = "visible";
+  results.innerText = "";
+  spinner.style.display = "block";
 
   let classifier = await pipeline("sentiment-analysis");
 
@@ -23,7 +24,6 @@ document.getElementById("btn").addEventListener("click", async () => {
   } else {
     alert("Introduzca una URL valida.");
   }
-  result.innerHTML = "";
 
   if (comments.length > 0) {
     let promise = comments.map(async (comment) => {
@@ -34,9 +34,9 @@ document.getElementById("btn").addEventListener("click", async () => {
       p.innerText = `${text} is ${analysis[0].label} with ${Math.ceil(
         analysis[0].score * 100
       )} % accuracy`;
-
+      p.style.color = setColor(analysis[0].label, analysis[0].score.toFixed(5));
       analysisPointerator(analysis[0].label, analysis[0].score);
-      result.appendChild(p);
+      results.appendChild(p);
     });
     await Promise.all(promise);
 
@@ -45,10 +45,17 @@ document.getElementById("btn").addEventListener("click", async () => {
 
     // Actualiza el contador final
     let summary = document.createElement("p");
-    summary.innerText += `${positivePercentage.toFixed(2)}% POSITIVE`;
-    result.appendChild(summary);
 
-    spinner.style.visibility = "hidden";
+    let positivePercent =
+      positivePercentage > 0 ? positivePercentage.toFixed(2) : 0;
+
+    summary.innerText += `${positivePercent}% POSITIVE`;
+
+    summary.style.backgroundColor = setColor("POSITIVE", positivePercent / 100);
+    summary.style.fontWeight = "bold";
+    results.prepend(summary);
+
+    spinner.style.display = "none";
   }
 });
 
@@ -57,5 +64,14 @@ function analysisPointerator(label, score) {
     points += score;
   } else {
     points -= score;
+  }
+}
+
+function setColor(label, score) {
+  console.log(score);
+  if (label === "POSITIVE") {
+    return `rgba(60,179,113,${score})`;
+  } else {
+    return `rgba(255,0,0,${score})`;
   }
 }
