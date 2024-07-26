@@ -66,33 +66,6 @@ const apiKey = "YOUR_YOUTUBE_API_KEY";
 - **CSS**
 - **JavaScript**
 
-## File Structure
-
-```
-
-├── favicons
-│   ├── letterFav.ico
-│   ├── mainFav.ico
-│   ├── photoFav.ico
-│   └── youtubeFav.ico
-├── index.html
-├── pages
-│   ├── image.html
-│   ├── text.html
-│   └── youtubeComments.html
-├── readme.md
-├── refs.md
-├── scripts
-│   ├── getComments.js
-│   ├── image.js
-│   ├── index.js
-│   ├── service-worker.js
-│   ├── text.js
-│   └── youtubeComments.js
-└── styles
-    └── styles.css
-```
-
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
