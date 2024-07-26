@@ -18,6 +18,7 @@ btn.addEventListener("click", async () => {
     let id = input.value.match(regex)[1];
     const apiUrl = `https://www.googleapis.com/youtube/v3/commentThreads?key=${apiKey}&textFormat=plainText&part=snippet&videoId=${id}&maxResults=500`;
     comments = await getComments(apiUrl);
+    console.log("Comentarios obtenidos:", comments); // Depuración
   } else {
     window.alert("Introduzca una URL valida.");
   }
@@ -26,41 +27,41 @@ btn.addEventListener("click", async () => {
     const commentTexts = comments.map(
       (comment) => comment.snippet.topLevelComment.snippet.textOriginal
     );
-
     const chunks = chunkArray(commentTexts, 10);
-
     const chunkPromises = [];
 
+    
     chunks.forEach((chunk, index) => {
       chunkPromises.push(
         new Promise((resolve) => {
           navigator.serviceWorker.ready.then(function (registration) {
-            console.log("Service Worker listo, enviando chunk:", chunk); // Depuración
-            registration.active.postMessage({
-              action: "analyzeChunk",
-              chunk: chunk,
-              chunkIndex: index,
-            });
-
-            function handler(event) {
-              console.log("Mensaje recibido del Service Worker:", event.data); // Depuración
+            const messageChannel = new MessageChannel();
+            messageChannel.port1.onmessage = function (event) {
+              console.log("Mensaje recibido del Service Worker:", event.data);
               if (
                 event.data.action === "displayResult" &&
                 event.data.chunkIndex === index
               ) {
                 resolve(event.data.results);
-                navigator.serviceWorker.removeEventListener("message", handler);
               }
-            }
+            };
 
-            navigator.serviceWorker.addEventListener("message", handler);
+            registration.active.postMessage(
+              {
+                action: "analyzeChunk",
+                chunk: chunk,
+                chunkIndex: index,
+              },
+              [messageChannel.port2]
+            );
           });
         })
       );
     });
-
+    console.log("Promesas de chunks:", chunkPromises); // Depuración
     const allResults = await Promise.all(chunkPromises);
-    console.log(chunkPromises);
+
+    console.log("Todos los resultados:", allResults); // Depuración
 
     // Procesar todos los resultados juntos
     allResults.flat().forEach((result) => {
