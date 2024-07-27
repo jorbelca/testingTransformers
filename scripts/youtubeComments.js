@@ -18,7 +18,6 @@ btn.addEventListener("click", async () => {
     let id = input.value.match(regex)[1];
     const apiUrl = `https://www.googleapis.com/youtube/v3/commentThreads?key=${apiKey}&textFormat=plainText&part=snippet&videoId=${id}&maxResults=500`;
     comments = await getComments(apiUrl);
-    console.log("Comentarios obtenidos:", comments); // Depuración
   } else {
     window.alert("Introduzca una URL valida.");
   }
@@ -28,40 +27,9 @@ btn.addEventListener("click", async () => {
       (comment) => comment.snippet.topLevelComment.snippet.textOriginal
     );
     const chunks = chunkArray(commentTexts, 10);
-    const chunkPromises = [];
+    const chunkPromises = chunks.map((chunk) => analyzeComments(chunk));
 
-    
-    chunks.forEach((chunk, index) => {
-      chunkPromises.push(
-        new Promise((resolve) => {
-          navigator.serviceWorker.ready.then(function (registration) {
-            const messageChannel = new MessageChannel();
-            messageChannel.port1.onmessage = function (event) {
-              console.log("Mensaje recibido del Service Worker:", event.data);
-              if (
-                event.data.action === "displayResult" &&
-                event.data.chunkIndex === index
-              ) {
-                resolve(event.data.results);
-              }
-            };
-
-            registration.active.postMessage(
-              {
-                action: "analyzeChunk",
-                chunk: chunk,
-                chunkIndex: index,
-              },
-              [messageChannel.port2]
-            );
-          });
-        })
-      );
-    });
-    console.log("Promesas de chunks:", chunkPromises); // Depuración
     const allResults = await Promise.all(chunkPromises);
-
-    console.log("Todos los resultados:", allResults); // Depuración
 
     // Procesar todos los resultados juntos
     allResults.flat().forEach((result) => {
@@ -122,4 +90,19 @@ function chunkArray(array, chunkSize) {
     chunks.push(array.slice(i, i + chunkSize));
   }
   return chunks;
+}
+
+function analyzeComments(comments) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker("/scripts/web-workers/workers.js");
+    worker.postMessage(comments);
+    worker.onmessage = (event) => {
+      resolve(event.data);
+      worker.terminate();
+    };
+    worker.onerror = (error) => {
+      reject(error);
+      worker.terminate();
+    };
+  });
 }
