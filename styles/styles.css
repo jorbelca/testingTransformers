@@ -65,7 +65,7 @@ a {
   cursor: pointer;
   overflow: hidden;
   margin: 30 0;
-  max-height: 1.6vh;
+  max-height: 20px;
 }
 
 #results-expandable p:hover {

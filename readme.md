@@ -1,12 +1,6 @@
 # Testing Tranformers
 
-This is a simple frontend application that provides three main functionalities:
-
-1. **Image Analysis**: Analyzes and describes the content of an uploaded image.
-2. **Text Sentiment Analysis**: Analyzes the sentiment (positive, negative, or neutral) of a given text.
-3. **YouTube Comment Sentiment Analysis**: Analyzes the sentiment of the comments on a specified YouTube video.
-
-With this project i tried to test the capabilities of integrating AI models in the frontend using the Transformers library. By leveraging these models, you can provide advanced functionalities directly in the browser without relying on a backend server.
+With this project I tried to test the capabilities of integrating AI models in the frontend using the Transformers library. By leveraging these models, you can provide advanced functionalities directly in the browser without relying on a backend server.
 
 ## Features
 
@@ -17,6 +11,20 @@ With this project i tried to test the capabilities of integrating AI models in t
 ## Prerequisites
 
 To use the YouTube comment sentiment analysis feature, you will need an API key for the YouTube Data API v3. You can obtain this key from the [Google Developer Console](https://console.developers.google.com/).
+
+## Captures
+
+### Text sentiment analyser
+
+![Text](./readmeImg/textAnalizer.png)
+
+### Youtube comments analysis
+
+![Youtube](./readmeImg/youtubeAnalizer.png)
+
+### Image analysis
+
+![Image](./readmeImg/imageAnalizer.png)
 
 ## Getting Started
 
@@ -69,10 +77,6 @@ const apiKey = "YOUR_YOUTUBE_API_KEY";
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contact
-
-If you have any questions or suggestions, feel free to contact me at [your-email@example.com](mailto:your-email@example.com).
 
 ## Acknowledgements
 
