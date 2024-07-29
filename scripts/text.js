@@ -12,7 +12,10 @@ form.addEventListener("submit", async (e) => {
   if (!text || text.value.length < 1) {
     document.getElementById("result").innerText = "No text";
   } else {
-    let classifier = await pipeline("sentiment-analysis");
+    let classifier = await pipeline(
+      "sentiment-analysis",
+      "Xenova/distilbert-base-uncased-finetuned-sst-2-english"
+    );
     let result = await classifier(text.value);
 
     document.getElementById("result").innerText = `The text is ${

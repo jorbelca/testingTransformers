@@ -59,8 +59,6 @@ btn.addEventListener("click", async () => {
 
     spinner.style.display = "none";
     btn.removeAttribute("disabled");
-
-    console.log("Todos los resultados están listos");
   } else {
     alert("No comments found.");
     spinner.style.display = "none";

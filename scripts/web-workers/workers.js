@@ -6,7 +6,10 @@ self.addEventListener("message", async function (event) {
     const module = await import(
       "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.4.1"
     );
-    classifier = await module.pipeline("sentiment-analysis");
+    classifier = await module.pipeline(
+      "sentiment-analysis",
+      "Xenova/distilbert-base-uncased-finetuned-sst-2-english"
+    );
   }
 
   const comments = event.data;
