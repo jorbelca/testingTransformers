@@ -8,7 +8,7 @@ const form = document.querySelector(".input_text");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   btn.setAttribute("disabled", true);
-  spinner.style.visibility = "visible";
+  spinner.style.display = "block";
   if (!text || text.value.length < 1) {
     document.getElementById("result").innerText = "No text";
   } else {
@@ -22,7 +22,7 @@ form.addEventListener("submit", async (e) => {
       result[0].label
     } with ${Math.ceil(result[0].score * 100)} % accuracy`;
   }
-  spinner.style.visibility = "hidden";
+  spinner.style.display = "none";
   btn.removeAttribute("disabled");
 });
 

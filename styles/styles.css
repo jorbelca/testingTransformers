@@ -1,48 +1,100 @@
+/* Importación de Font Awesome */
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css";
+
+/* Estilos globales */
 * {
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 body {
   min-width: 300px;
+  background-color: #f0f0f0;
+  color: #333;
 }
+
+/* Botones y entradas */
 .trigger-btns,
 .input_text,
 .input_image {
   display: flex;
   align-items: center;
-  padding-top: 30px;
   justify-content: center;
-  gap: 20px;
+  padding-top: 30px;
+  gap: 40px;
+}
+#btnTrigger {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+#btnTrigger:hover {
+  background-color: #4e9df17d;
+  color: #f0f0f0;
+  border-color: #4e9df13d;
+  transition: background-color 500ms ease-in;
+  transition: border-color 50ms linear;
+}
+/* Botones con íconos */
+button a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+button {
+  border: none;
+}
+button i {
+  color: #333;
+  transition: color 0.3s;
+  border-radius: 5px;
+}
+button:hover i {
+  color: #007bff;
+  transform: scale(1.1);
 }
 
-i button {
-  border-radius: 5px;
-}
-button:hover {
-  border: 2px solid grey;
-  border-radius: 5px;
-}
+/* Estilo para los enlaces */
 a {
   text-decoration: none;
   color: black;
 }
 
+/* Tabla de resultados */
 #tableResults {
   border-radius: 5px;
   visibility: hidden;
   padding: 1px;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#tableResults th,
+#tableResults td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
 }
 #tableResults thead {
   border: none;
   background-color: grey;
   color: white;
 }
+
+/* Ícono de spinner */
 .fa-spinner {
   display: none;
   color: grey;
   animation: spin 1s linear infinite;
   align-self: center;
 }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -52,51 +104,110 @@ a {
   }
 }
 
-#results-expandable,
+/* Sección de resultados */
 #results {
-  margin: 10px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#results-expandable {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
+
 #results-expandable p {
-  transition: max-height 0.3s ease;
+  width: 100%;
+  padding: 20px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  margin: 30 0;
+  margin: 0;
   max-height: 20px;
+  transition: max-height 0.3s ease, background-color 0.3s ease;
+  border-bottom: 1px solid #ddd;
+}
+#results-expandable p:last-child {
+  border-bottom: none;
+}
+#results-expandable p:not(:first-child):hover {
+  max-height: 200px;
+  padding: 10px;
+  background-color: #f9f9f9;
 }
 
-#results-expandable p:hover {
-  max-height: fit-content;
-}
-
-#results-expandable :first-child {
+#results-expandable p:first-child {
   align-self: center;
   cursor: unset;
-  padding: 10px;
+  padding: 30px;
+  border: 3px solid #e3eeff;
   border-radius: 10px;
-  color: grey;
+  color: #666;
+  background-color: #e3eeff !important;
+  width: 100%;
+  text-align: center;
+}
+.result-text {
+  padding-top: 30px;
 }
 
+/* Entradas de texto */
 #urlInput,
 #texto {
   max-width: 70%;
   min-width: 50%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
+
 #texto {
   overflow-y: hidden;
   resize: none;
 }
+
+/* Vista previa de imagen */
 #image_preview {
   display: none;
   width: 25vw;
   height: auto;
 }
+
+/* Resultados */
 #result {
   text-align: center;
 }
+/* Botón de regreso a inicio */
+.return-home {
+  margin: 20px;
+}
+
+.return-home button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.return-home button i {
+  color: #333;
+  transition: color 0.3s;
+}
+
+.return-home button:hover i {
+  color: #007bff;
+}
+/* Media queries */
 @media (max-width: 500px) {
   .input_image {
     flex-direction: column-reverse;
