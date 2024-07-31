@@ -1,5 +1,5 @@
-/* Importación de Font Awesome */
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css";
+/* Importación de Font Awesome , ahora en los html porque en produccion daba problemas*/
+/* @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"; */
 
 /* Estilos globales */
 * {

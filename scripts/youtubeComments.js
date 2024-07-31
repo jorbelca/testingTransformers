@@ -1,4 +1,4 @@
-import { apiKey } from "../key.js";
+import { apiKey } from "../config/keys.js";
 import { getComments } from "./getComments.js";
 
 let input = document.getElementById("urlInput");
