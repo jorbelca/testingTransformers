@@ -2,6 +2,12 @@
 
 With this project I tried to test the capabilities of integrating AI models in the frontend using the Transformers library. By leveraging these models, you can provide advanced functionalities directly in the browser without relying on a backend server.
 
+##### [Deploy](https://testing-transformers.vercel.app/index.html)
+
+⚠️ **Notice:** The YouTube Comment Analyzer feature is currently not functioning correctly in PRODUCTION. This is due to the missing integration of the API key in the frontend. We are working on resolving this issue.
+
+Please check back later for updates.
+
 ## Features
 
 - **Image Analysis**: Upload an image to get an analysis of its content.
