@@ -11,14 +11,14 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Inject API Key
         run: |
           echo "export const Key = '${{ secrets.KEY }}';" > ./config.production.js
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           publish_dir: ./  # Directorio raíz o el que uses para tu página
